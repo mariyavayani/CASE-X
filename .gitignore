@@ -1,2 +1,3 @@
-   *.exe
-   *.gch
+*.exe
+*.gch
+test_*.cpp
