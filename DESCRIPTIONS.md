@@ -8,9 +8,8 @@ Evidence timeline, merge sort: an evidence log can grow as a case develops, and 
 
 Suspect ranking, bubble sort: a case has only a handful of suspects, so a simple O(n²) sort is plenty. The cost is irrelevant at that size, and a short, readable sort is easier to explain.
 
-How the two fit the story: the timeline option calls mergeSort on the evidence, and the final investigation summary calls rankSuspects after the scores are computed. Expected ranking with your case data: Karan 22, Meera 17, Rohan 6, Dev 4, Anita 0. That gives you an easy test.
+How the two fit the story: the timeline option calls mergeSort on the evidence, and the final investigation summary calls rankSuspects after the scores are computed. Expected ranking with case data: Karan 22, Meera 17, Rohan 6, Dev 4, Anita 0. That gives you an easy test.
 
-One thing to coordinate: rankSuspects needs the suspect scores filled in first, and the suspects live in your teammate’s BST. Agree on how you’ll get them out, for example a BST function that copies all suspects into an array, which also gives them a natural use for in-order traversal.
 
 
 **HEAP:**
