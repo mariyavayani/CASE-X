@@ -12,3 +12,12 @@ How the two fit the story: the timeline option calls mergeSort on the evidence, 
 
 One thing to coordinate: rankSuspects needs the suspect scores filled in first, and the suspects live in your teammate’s BST. Agree on how you’ll get them out, for example a BST function that copies all suspects into an array, which also gives them a natural use for in-order traversal.
 
+
+**HEAP:**
+Heap (evidence priority). A max-heap ordered by evidence priority, stored in an array. The most important piece of evidence (the DNA sample, priority 10) is always at the top, so the investigator can analyze the most critical evidence first without searching the whole list. New evidence is added at the bottom and moves up to its correct position (heapifyUp), and the top item is removed by replacing it with the last item and sinking that down (heapifyDown). Insert and extract-max both run in O(log n), and viewing the top item is O(1).
+
+Why a heap? Evidence arrives continuously in a real case, and the next item to process should always be the most important one. A sorted array would need up to O(n) shifting to insert each new item, while a heap handles both inserting and removing in O(log n).
+
+Role in the simulator: it decides the order of the analysis queue. When the investigator chooses “Analyze next evidence,” the heap returns the highest-priority item, which is then marked as analyzed through the stack so the step can be undone.
+
+Test result (case data): evidence is processed in the order E106, E102, E105, E104, E108, E103, E107, E101.
