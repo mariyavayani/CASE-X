@@ -22,3 +22,17 @@ Why a heap? Evidence arrives continuously in a real case, and the next item to p
 Role in the simulator: it decides the order of the analysis queue. When the investigator chooses “Analyze next evidence,” the heap returns the highest-priority item, which is then marked as analyzed through the stack so the step can be undone.
 
 Test result (case data): evidence is processed in the order E106, E102, E105, E104, E108, E103, E107, E101.
+
+
+**GRAPH:**
+
+Graph (crime scene map). The building is modelled as a graph. Rooms are vertices and the doors and passages between them are undirected edges, stored in an adjacency list. Two traversals answer two investigation questions:
+
+BFS (shortest route): explores room by room in widening rings using a queue, so the first time it reaches the destination is by the fewest rooms. It records each room’s parent and rebuilds the route backwards. Complexity is O(V + E).
+DFS with backtracking (all possible routes): follows each path as deep as it can, never entering the same room twice on one route, then backs up and tries the next door. It lists every route a suspect could have taken.
+
+Role in the simulator: the CCTV frame (E102) shows someone at the front door, and the broken window latch (E101) points to the Kitchen. The investigator picks an entry point, and the program shows the quickest way to the Study (Entrance, Hall, Study) and every other possible route (Entrance, Kitchen, Living Room, Hall, Study). The evidence then tells them which route fits.
+
+Why a graph? Rooms and doors are naturally a network. A list or table can’t express “which rooms connect to which” or find routes between them.
+
+Test result (case data): 2 possible routes from Entrance to Study, and 2 from Entrance to Bedroom, which is a dead end.
