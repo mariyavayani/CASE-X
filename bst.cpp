@@ -49,3 +49,31 @@ void displaySuspectsInorder(SuspectNode* root) {
 
     displaySuspectsInorder(root->right);
 }
+
+bool addScore(SuspectNode* root, int id, int points) {
+    SuspectNode* node = searchSuspect(root, id);
+
+    if(node == NULL)
+        return false;
+
+    node->data.score += points;
+    return true;
+}
+
+void collectSuspects(SuspectNode* root, Suspect arr[], int &count) {
+    if(root == NULL)
+        return;
+
+    collectSuspects(root->left, arr, count);
+    arr[count++] = root->data;
+    collectSuspects(root->right, arr, count);
+}
+
+void freeSuspects(SuspectNode* root) {
+    if(root == NULL)
+        return;
+
+    freeSuspects(root->left);
+    freeSuspects(root->right);
+    delete root;
+}
