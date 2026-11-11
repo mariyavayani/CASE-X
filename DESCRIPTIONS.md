@@ -26,13 +26,15 @@ Test result (case data): evidence is processed in the order E106, E102, E105, E1
 
 **GRAPH:**
 
-Graph (crime scene map). The building is modelled as a graph. Rooms are vertices and the doors and passages between them are undirected edges, stored in an adjacency list. Two traversals answer two investigation questions:
+Graph (crime scene map). The building is modelled as a graph. Each room is a vertex, and each door or passage between rooms is an edge. The graph is stored as an adjacency list: every room keeps a vector listing the rooms it connects to, and each door is added to both rooms’ lists, since a door works in both directions. Two traversals answer two investigation questions:
 
-BFS (shortest route): explores room by room in widening rings using a queue, so the first time it reaches the destination is by the fewest rooms. It records each room’s parent and rebuilds the route backwards. Complexity is O(V + E).
-DFS with backtracking (all possible routes): follows each path as deep as it can, never entering the same room twice on one route, then backs up and tries the next door. It lists every route a suspect could have taken.
+BFS (shortest route): uses a queue to explore the map in rings, first every room one door away, then two doors away, and so on. It records the room each one was reached from, so the first time it reaches the destination is by the fewest rooms, and the route is rebuilt by following those records backwards. Complexity is O(V + E).
+DFS with backtracking (all possible routes): walks through one door after another as deep as it can, never entering a room already on the current route. When it reaches the destination it records the route, then steps back and tries the next door. It lists every route a suspect could have taken. This is fast on a small building, though the number of routes can grow quickly in very large maps.
+
+Why a graph? Rooms and doors form a network. A list or table can’t express which rooms connect to which, or find routes between them, but a graph does both naturally.
+
+Why an adjacency list? It stores only the doors that exist, so BFS visits each room and door once, which is more efficient than checking every pair of rooms as an adjacency matrix would.
 
 Role in the simulator: the CCTV frame (E102) shows someone at the front door, and the broken window latch (E101) points to the Kitchen. The investigator picks an entry point, and the program shows the quickest way to the Study (Entrance, Hall, Study) and every other possible route (Entrance, Kitchen, Living Room, Hall, Study). The evidence then tells them which route fits.
 
-Why a graph? Rooms and doors are naturally a network. A list or table can’t express “which rooms connect to which” or find routes between them.
-
-Test result (case data): 2 possible routes from Entrance to Study, and 2 from Entrance to Bedroom, which is a dead end.
+Test result (case data): 18 of 18 checks passed. There are 2 possible routes from Entrance to Study, the Bedroom is a dead end with exactly 1 route, and unreachable rooms return no route.
