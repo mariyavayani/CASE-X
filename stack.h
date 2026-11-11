@@ -4,7 +4,8 @@
 
 #include <vector>
 #include "case_data.h"
-
+#include "bst.h" 
+           
 struct Action {
     int evidenceID;
     bool previousAnalyzed;
@@ -26,7 +27,7 @@ extern Evidence workingEvidence[NUM_EVIDENCE];
 // Investigation functions
 void initializeEvidence();
 int findEvidence(int id);
-void analyzeEvidence(Stack &s, int id);
-void undo(Stack &s);
+void analyzeEvidence(Stack &s, SuspectNode* root, int id);
+void undo(Stack &s, SuspectNode* root);
 
 #endif
