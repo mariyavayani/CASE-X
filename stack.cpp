@@ -36,7 +36,7 @@ int findEvidence(int id) {
     return -1;
 }
 
-void analyzeEvidence(Stack &s, int id) {
+void analyzeEvidence(Stack &s, SuspectNode* root, int id) {   
     int index = findEvidence(id);
 
     if(index == -1) {
@@ -56,10 +56,13 @@ void analyzeEvidence(Stack &s, int id) {
     s.push(a);
     workingEvidence[index].analyzed = true;
 
+    addScore(root, workingEvidence[index].suspectId,        
+             workingEvidence[index].priority);
+
     cout << "Evidence analyzed!\n";
 }
 
-void undo(Stack &s) {
+void undo(Stack &s, SuspectNode* root) {              
     if(s.isEmpty()) {
         cout << "Nothing to undo!\n";
         return;
@@ -72,6 +75,10 @@ void undo(Stack &s) {
 
     if(index != -1) {
         workingEvidence[index].analyzed = a.previousAnalyzed;
+
+        addScore(root, workingEvidence[index].suspectId,      
+                 -workingEvidence[index].priority);
+
         cout << "Action undone!\n";
     }
 }
