@@ -19,6 +19,8 @@
 - Stale-index risk: never sort workingEvidence in place (see sorting module).
 - Future scope: dynamic resizing / rehashing as the load factor grows; rebuild
   the table after a resize if the array becomes growable.
+  BST: insert and search are O(log n) on average and O(n) worst case (a skewed tree). Inorder traversal is O(n). Space is O(n).
+  Stack: push, pop, top and isEmpty are all O(1). Space is O(n).
 
 Test log (input, expected, actual):
 - search(101) and search(108) -> both return the correct index (slot 3 chain)
