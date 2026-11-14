@@ -50,4 +50,24 @@ inline void mergeSort(Evidence arr[], int left, int right) {
     mergeHalves(arr, left, mid, right);
 }
 
+// Prints the evidence timeline. Sorts a COPY, so the original array and the
+// hash table indexes are never disturbed.
+inline void showTimeline(const Evidence evidence[], int n, const Room rooms[]) {
+    Evidence* copy = new Evidence[n];
+    for (int i = 0; i < n; i++) copy[i] = evidence[i];
+
+    mergeSort(copy, 0, n - 1);
+
+    std::cout << "\nTIMELINE\n";
+    for (int i = 0; i < n; i++) {
+        int h = copy[i].timestamp / 100;
+        int m = copy[i].timestamp % 100;
+        std::cout << "  " << (h < 10 ? "0" : "") << h << ":"
+                  << (m < 10 ? "0" : "") << m << "  "
+                  << rooms[copy[i].roomId].name << " - " << copy[i].name
+                  << (copy[i].analyzed ? "  [analyzed]" : "") << "\n";
+    }
+    delete[] copy;
+}
+
 #endif
