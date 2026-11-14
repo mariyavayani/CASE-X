@@ -41,7 +41,7 @@ const Evidence EVIDENCE[NUM_EVIDENCE] = {
     {104, "Phone call log",     "Victim's phone shows a two-minute call from Sana Malik",       5, 2037,  7, 30, false},
     {101, "Broken window latch","Kitchen window latch forced from outside",                3, 2028,  3, NO_SUSPECT, false},
     {105, "Fingerprint",        "Partial print on the desk drawer, matches Faisal Rana",   5, 2042,  8, 60, false},
-    {107, "Car key fob",        "Driver's spare key fob found behind the sofa cushion",    2, 2015,  4, 70, false},
+    {107, "Car key fob",        "Driver’s spare key fob lying behind the sofa cushion",    2, 2015,  4, 70, false},
     {103, "Muddy boot print",   "Size 9 boot print leading from the hall toward the study",1, 2034,  5, 60, false}
 };
 

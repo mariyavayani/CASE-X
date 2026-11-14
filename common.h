@@ -23,7 +23,7 @@ struct Evidence {
     int id;                  // hash table key, e.g. 101
     string name;
     string description;
-    int roomId;              // room where it was found
+    int roomId;              // room where it was recorded
     int timestamp;           // HHMM, e.g. 2031 means 20:31
     int priority;            // 1 (low) to 10 (high), heap key
     int suspectId;           // suspect it points to, or NO_SUSPECT
