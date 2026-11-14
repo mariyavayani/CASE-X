@@ -1,9 +1,11 @@
 #include <iostream>
 #include "stack.h"
+#include "hash_table.h"
 
 using namespace std;
 
 Evidence workingEvidence[NUM_EVIDENCE];
+HashTable evidenceTable;
 
 void Stack::push(Action a) {
     v.push_back(a);
@@ -21,19 +23,22 @@ bool Stack::isEmpty() {
     return v.empty();
 }
 
+void buildEvidenceTable() {
+    evidenceTable.clear();
+    for(int i = 0; i < NUM_EVIDENCE; i++) {
+        evidenceTable.insert(workingEvidence[i].id, i);
+    }
+}
+
 void initializeEvidence() {
     for(int i = 0; i < NUM_EVIDENCE; i++) {
         workingEvidence[i] = EVIDENCE[i];
     }
+    buildEvidenceTable();
 }
 
 int findEvidence(int id) {
-    for(int i = 0; i < NUM_EVIDENCE; i++) {
-        if(workingEvidence[i].id == id) {
-            return i;
-        }
-    }
-    return -1;
+    return evidenceTable.search(id);
 }
 
 void analyzeEvidence(Stack &s, SuspectNode* root, int id) {   
