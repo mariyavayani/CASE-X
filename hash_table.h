@@ -74,7 +74,7 @@ public:
 
     int size() const { return count; }
 
-    // For demos and the viva: shows every slot and its chain
+    //shows every slot and its chain
     void print() const {
         for (int i = 0; i < SIZE; i++) {
             cout << "Slot " << i << ": ";
