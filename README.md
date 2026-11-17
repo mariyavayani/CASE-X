@@ -5,8 +5,11 @@
 CASE-X is a console-based simulation of a fictional crime. It does not store criminal records. Instead, every data structure and algorithm has one clear job in the investigation: finding evidence by ID, choosing what the lab examines first, undoing a mistaken step, looking up suspects, mapping routes through the house, rebuilding the timeline and ranking suspects.
 
 > **Course:** Data Structure Algorithms and Applications (DSA)
+> 
 > **Instructor:** Dr Muhammad Imran
+> 
 > **University:** NED University of Engineering & Technology, Karachi
+> 
 > **Language:** C++
 
 ---
